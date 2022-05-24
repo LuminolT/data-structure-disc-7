@@ -1,6 +1,17 @@
-#include <iostream>
+/**
+ * @file main.cpp
+ * @Author : Luminolt (copper_sulfate@qq.com)
+ * @brief
+ * @version 0.1
+ * @date 2022-05-24
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
+
+#include "include/FileSearch.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    FileSearch::RunTest();
     return 0;
 }
