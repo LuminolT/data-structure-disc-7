@@ -17,39 +17,23 @@
 #include <istream>
 #include <ostream>
 
+#include "SearchEngine.h"
+
+enum class SearchEngineType { RBTree, HashMap, TrieTree, ACAutomaton };
+
+/**
+ * @brief File Search System
+ *
+ */
 class FileSearch {
 public:
     /**
-     * @brief RBTree Method
+     * @brief Search
      *
-     * @param is
-     * @param os
+     * @param file_name
+     * @return SearchEngine
      */
-    static void SearchByRBTree(std::istream& is, std::ostream& os);
-
-    /**
-     * @brief Hash Map Method
-     *
-     * @param is
-     * @param os
-     */
-    static void SearchByHashMap(std::istream& is, std::ostream& os);
-
-    /**
-     * @brief Trie Tree Method
-     *
-     * @param is
-     * @param os
-     */
-    static void SearchByTrieTree(std::istream& is, std::ostream& os);
-
-    /**
-     * @brief AC Automaton Method
-     *
-     * @param is
-     * @param os
-     */
-    static void SearchByACAutomaton(std::istream& is, std::ostream& os);
+    // static SearchEngine SearchByRBTree(SearchEngineType type, std::string file_name);
 
     /**
      * @brief
