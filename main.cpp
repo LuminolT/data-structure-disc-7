@@ -9,9 +9,22 @@
  *
  */
 
+#include <ostream>
+
+#include "include/EngStream.h"
 #include "include/FileSearch.h"
+#include "include/SearchEngineRBTree.h"
+
 
 int main() {
-    FileSearch::RunTest();
+    // FileSearch::RunTest();
+    // EngInStream ifs("1.txt");
+    // std::string str;
+    // while (ifs >> str) {
+    //     std::cout << str << std::endl;
+    // }
+    SearchEngineRBTree se("1.txt");
+    std::cout << se.Name() << std::endl;
+    std::cout << se.Search("it") << std::endl;
     return 0;
 }
