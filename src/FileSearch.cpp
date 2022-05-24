@@ -13,7 +13,7 @@
 
 #include <iostream>
 
-void FileSearch::RunTest(std::istream& is, std::ostream& os) {
+void FileSearch::RunTest(std::istream &is, std::ostream &os) {
     std::cout << "Hello";
     std::cout << "World";
 }
