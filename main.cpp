@@ -31,14 +31,22 @@
     int main(void)
     {
         ifstream fin;
-        fin.open(file);//关联文件file
-        if (!fin.is_open()) {
-            cout << "file.txt文件不存在，请检查文件名或者目录下文件是否存在。" << endl;
+        string word;
+        const char* file1 = "1.txt";
+        const char* file2 = "2.txt";
+        fin.open(file1);
+        fin.open(file2);
+        if (!fin.is_open())
+        {
+            cout << "not exited" << endl;
             system("pause");	//暂停
             return 0;
-        }	//if
-        StatisticsData();	//数据统计
-        MajorMenu();//主菜单
+        }
+        cin >> word;
+        StatisticsData(file1);
+        LinkHashWordLocateMenu(word,file1);
+        StatisticsData(file2);
+        LinkHashWordLocateMenu(word,file2);
         return 0;
 
 
