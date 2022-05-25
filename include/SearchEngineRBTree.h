@@ -14,6 +14,8 @@
 
 #include <fstream>
 #include <map>
+#include <set>
+#include <string>
 
 #include "SearchEngine.h"
 
@@ -39,7 +41,8 @@ public:
     virtual int Search(std::string) override;
 
 protected:
-    std::map<std::string, int> _map;
+    // std::map<std::string, int> _map;
+    std::multiset<std::string> _set;
 };
 
 #endif  // INCLUDE_SEARCH_ENGINE_RBTREE_H

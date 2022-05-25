@@ -17,12 +17,8 @@ SearchEngineRBTree::SearchEngineRBTree(std::string file_name) : SearchEngine(fil
     EngInStream ifs(file_name);
     std::string str;
     while (ifs >> str) {
-        if (_map[str] == 0) {
-            _map[str] = 1;
-        } else {
-            ++_map[str];
-        }
+        _set.insert(str);
     }
 }
 
-int SearchEngineRBTree::Search(std::string str) { return _map[str]; }
+int SearchEngineRBTree::Search(std::string str) { return _set.count(str); }
