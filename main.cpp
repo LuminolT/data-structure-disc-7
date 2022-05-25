@@ -42,11 +42,16 @@
             system("pause");	//暂停
             return 0;
         }
-        cin >> word;
-        StatisticsData(file1);
-        LinkHashWordLocateMenu(word,file1);
-        StatisticsData(file2);
-        LinkHashWordLocateMenu(word,file2);
+        cout << "暂时为输入tuichu结束" << endl;
+        while(word!="tuichu")
+        {
+
+            cin >> word;
+            StatisticsData(file1);
+            LinkHashWordLocateMenu(word,file1);
+            StatisticsData(file2);
+            LinkHashWordLocateMenu(word,file2);
+        }
         return 0;
 
 
