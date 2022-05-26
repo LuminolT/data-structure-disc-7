@@ -15,7 +15,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-
+#include "TrieNode.h"
 class TrieTree {
 public:
     // TODO
@@ -59,7 +59,7 @@ public:
     int Search(int num, const std::string& word);
 
 protected:
-    // if needed
+    TrieNode *root;
 };
 
 #endif  // INCLUDE_TRIE_TREE_H
