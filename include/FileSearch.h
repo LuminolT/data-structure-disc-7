@@ -33,7 +33,7 @@ public:
      * @param file_name
      * @return SearchEngine
      */
-    static SearchEngine GetSearchEngine(SearchEngineType type, std::string file_name);
+    // static SearchEngine GetSearchEngine(SearchEngineType type, std::string file_name);
 
     /**
      * @brief

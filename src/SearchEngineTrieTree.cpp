@@ -15,12 +15,12 @@ SearchEngineTrieTree::SearchEngineTrieTree(std::string file_name) : SearchEngine
     EngInStream ifs(file_name);
     std::string str;
     while (ifs >> str) {
-//        ++_tree[str];
-        _tree.Insert(file_name[3]-'0', str);
+        //        ++_tree[str];
+        _tree.Insert(file_name[3] - '0', str);
     }
 }
 
 int SearchEngineTrieTree::Search(std::string str) {
-//    return _tree[str];
-    return _tree.Search(1,str);
+    //    return _tree[str];
+    return _tree.Search(1, str);
 }

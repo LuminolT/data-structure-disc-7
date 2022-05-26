@@ -11,59 +11,54 @@
 
 #include "TrieTree.h"
 
-TrieTree::TrieTree()
-{
-    root=new TrieNode;
-}
-TrieTree::~TrieTree()=default;
-void TrieTree::Insert(int num, const std::string& word)
-{
-    TrieNode * now=root;
-    for(auto letter:word)
-    {
-        int go=letter-'a';
-        if(now->next[go]==nullptr)
-            now->next[go]=new TrieNode();
-        now=now->next[go];
+TrieTree::TrieTree() { root = new TrieNode; }
+
+TrieTree::~TrieTree() { delete root; }
+
+void TrieTree::Insert(int num, const std::string& word) {
+    TrieNode* now = root;
+    for (auto letter : word) {
+        int go = letter - 'a';
+        if (now->next[go] == nullptr)
+            now->next[go] = new TrieNode();
+        now = now->next[go];
     }
-    while(now->data.size()<=num) now->data.push_back(0);
+    while (now->data.size() <= num)
+        now->data.push_back(0);
     now->data[num]++;
-//    std::cout<<word<<" "<<now->data[1]<<std::endl;
+    //    std::cout<<word<<" "<<now->data[1]<<std::endl;
 }
-void TrieTree::Remove(int num, const std::string& word)
-{
-    TrieNode * now=root;
-    for(auto letter:word)
-    {
-        int go=letter-'a';
-        now=now->next[go];
+
+void TrieTree::Remove(int num, const std::string& word) {
+    TrieNode* now = root;
+    for (auto letter : word) {
+        int go = letter - 'a';
+        now = now->next[go];
     }
-    if(now->data[num]>0) now->data[num]--;
+    if (now->data[num] > 0)
+        now->data[num]--;
 }
-std::vector<int> TrieTree::SearchAll(const std::string& word)
-{
-    TrieNode* now=root;
-    for(auto letter:word)
-    {
-        int go=letter-'a';
-        if(now->next[go]==nullptr)
-        {
-            std::vector<int>v;
+
+std::vector<int> TrieTree::SearchAll(const std::string& word) {
+    TrieNode* now = root;
+    for (auto letter : word) {
+        int go = letter - 'a';
+        if (now->next[go] == nullptr) {
+            std::vector<int> v;
             return v;
         }
-        now=now->next[go];
+        now = now->next[go];
     }
     return now->data;
 }
-int TrieTree::Search(int num, const std::string& word)
-{
-    TrieNode* now=root;
-    for(auto letter:word)
-    {
-        int go=letter-'a';
-        if(now->next[go]==nullptr)
+
+int TrieTree::Search(int num, const std::string& word) {
+    TrieNode* now = root;
+    for (auto letter : word) {
+        int go = letter - 'a';
+        if (now->next[go] == nullptr)
             return 0;
-        now=now->next[go];
+        now = now->next[go];
     }
     return now->data[num];
 }

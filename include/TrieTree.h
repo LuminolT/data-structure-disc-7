@@ -1,6 +1,6 @@
 /**
  * @file TrieTree.h
- * @Author : Luminolt (copper_sulfate@qq.com)
+ * @Author : Luminolt (copper_sulfate@qq.com), Olivanpa
  * @brief
  * @version 0.1
  * @date 2022-05-26
@@ -15,7 +15,9 @@
 #include <iostream>
 #include <string>
 #include <vector>
+
 #include "TrieNode.h"
+
 class TrieTree {
 public:
     // TODO
@@ -59,7 +61,7 @@ public:
     int Search(int num, const std::string& word);
 
 protected:
-    TrieNode *root;
+    TrieNode* root;
 };
 
 #endif  // INCLUDE_TRIE_TREE_H
