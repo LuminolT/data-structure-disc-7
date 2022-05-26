@@ -9,27 +9,13 @@
  *
  */
 
+#include <functional>
 #include <ostream>
 
-// #include "SearchEngineTrieTree.h"
-#include "SearchEngineRBTree.h"
-#include "SearchEngineTrieTree.h"
-#include "include/EngStream.h"
-#include "include/FileSearch.h"
-#include "include/SearchEngineHashMap.h"
-// #include "include/SearchEngineRBTree.h"
+#include "FileSearch.h"
 
 int main() {
-    // FileSearch::RunTest();
-    // EngInStream ifs("1.txt");
-    // std::string str;
-    // while (ifs >> str) {
-    //     std::cout << str << std::endl;
-    // }
-    SearchEngineRBTree se({"1.txt", "2.txt"});
-    auto ret = se.SearchAll("it");
-    for (auto &p : ret) {
-        std::cout << p.first << " " << p.second << std::endl;
-    }
+    FileSearch f;
+    f.RunTest();
     return 0;
 }

@@ -14,10 +14,11 @@
 
 #include <fstream>
 #include <iostream>
-#include <istream>
-#include <ostream>
 
 #include "SearchEngine.h"
+#include "SearchEngineHashMap.h"
+#include "SearchEngineRBTree.h"
+#include "SearchEngineTrieTree.h"
 
 enum class SearchEngineType { RBTree, HashMap, TrieTree };
 
@@ -33,7 +34,7 @@ public:
      * @param file_name
      * @return SearchEngine
      */
-    // static SearchEngine GetSearchEngine(SearchEngineType type, std::string file_name);
+    void GetSearchEngine(SearchEngineType type, std::vector<std::string> file_name);
 
     /**
      * @brief
@@ -41,7 +42,10 @@ public:
      * @param is
      * @param os
      */
-    static void RunTest(std::istream& is = std::cin, std::ostream& os = std::cout);
+    void RunTest(std::istream& is = std::cin, std::ostream& os = std::cout);
+
+protected:
+    SearchEngine* _searchEngine;
 };
 
 #endif  // INCLUDE_FILE_SEARCH_H
