@@ -11,8 +11,6 @@
 
 #include "SearchEngineRBTree.h"
 
-#include "EngStream.h"
-
 SearchEngineRBTree::SearchEngineRBTree(std::string file_name) : SearchEngine(file_name) {
     EngInStream ifs(file_name);
     std::string str;
