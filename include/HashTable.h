@@ -2,18 +2,34 @@
 #ifndef _HASHTABLE_H
 #define _HASHTABLE_H
 
+// 将单词转换为唯一关键码
+int  WordTransitionKey(string word)
+{
+    int a[21] = { 0,2,3,5,7,11,13,17,19,23,27,29,31,37,41,47,51,67,87,101,111 };
+    int sumkey = 0;
+
+    for (int i = 0; i < int(word.size()); i++)
+    {
+        sumkey += int(word[i]);
+    }
+
+    sumkey =sumkey+ int('h') * a[int(word.size())]+int(word[1])-int(word[0]);
+    return sumkey;
+}
+
+
+void Clear()
+{
+    for (int i = 0; i < MaxSize; i++)
+    {
+        WF[i].word = '0';
+
+    }
+}
 
 //统计文章词频
 int StatisticalWord(string word)
 {
-    for (int i = 0; i < MaxSize; i++)
-    {
-        if (WF[i].word == word)
-        {
-            WF[i].frequency++;
-            return i;
-        }
-    }
     WF[sum].word = word;
     WF[sum].frequency = 1;
     WF[sum].key = WordTransitionKey(word);
@@ -22,7 +38,7 @@ int StatisticalWord(string word)
 }
 
 //词频统计
-void StatisticsData(const char*file)
+void StatisticsData(const char* file)
 {
     ifstream fin;
     fin.open(file);
@@ -35,7 +51,7 @@ void StatisticsData(const char*file)
                 word = ch;
             else
                 word += ch;
-        }	//if
+        }
         else {
             if (word != "\0")
             {
@@ -55,111 +71,83 @@ void StatisticsData(const char*file)
     fin.close();
 }
 
-void Clear()
-{
-    for (int i = 0; i < MaxSize; i++)
-    {
-        WF[i].word = '0';
 
-    }
-}
-
-//将单词转换为唯一关键码
-int  WordTransitionKey(string word) {
-    int a[21] = { 0,2,3,5,7,11,13,17,19,23,27,29,31,37,41,47,51,67,87,101,111 };
-    int sumkey = 0;
-    for (int i = 0; i < int(word.size()); i++) {
-        sumkey += int(word[i]);
-    }
-    sumkey += int('h') * a[int(word.size())];
-    return sumkey;
-}
-
-//链地址法哈希表类
-class HashTableLink {
+class HashTable {
 public:
-    HashTableLink();	//构造函数
-    ~HashTableLink();	//析构函数
-    int Insert(datatype fword);	//插入
-    Node* Search(string word);	//查找
+    HashTable();
+    ~HashTable() {};
+    int Insert(datatype a);
+    int Search(string word);
+    datatype Get(int a);
 
 private:
     int H(int k);
-    Node* ht[MaxSize];
+    datatype ht[MaxSize];
 };
 
 //构造函数
-HashTableLink::HashTableLink() {
-    for (int i = 0; i < MaxSize; i++)
-        ht[i] = NULL;
-}
-
-//析构函数，释放空间
-HashTableLink :: ~HashTableLink() {
-    Node* p = NULL, * q = NULL;
+HashTable::HashTable() {
     for (int i = 0; i < MaxSize; i++) {
-        p = ht[i];
-        q = p;
-        while (p != NULL) {
-            p = p->next;
-            delete q;
-            q = p;
-        }
-    }
+        ht[i].key = 0;
+        ht[i].word = "";
+        ht[i].frequency = 0;
+    }	//for
 }
 
-//除留余数法-散列函数
-int HashTableLink::H(int k) {
+//哈希函数，除留余数法
+int HashTable::H(int k) {
     return k % MaxSize;
 }
 
 
 //查找函数
-Node* HashTableLink::Search(string word) {
-    int k = WordTransitionKey(word);
-    int j = H(k);
-    Node* p = ht[j];
-    while (p != NULL) {
-        if (p->data.word == word)
-            return p;
+int HashTable::Search(string word)
+{
+    int x = 0;
+    int key = WordTransitionKey(word);
+    int i = H(key);
+    while (ht[i].key != 0)
+    {
+        if (ht[i].word == word)
+        {
+            ht[i].frequency += 1;
+            return i;
+        }
         else
-            p = p->next;
+            i = (i + 1) % MaxSize;
     }
-    return nullptr;
+    return 0;
 }
 
 //插入函数
-int HashTableLink::Insert(datatype fword) {
-    int k = WordTransitionKey(fword.word);
-    fword.key = k;
-    int j = H(k);
-    Node* p = Search(fword.word);
-    if (p != nullptr)
-        return -1;
-    else {
-        p = new Node;
-        p->data.key = fword.key;
-        p->data.frequency = fword.frequency;
-        p->data.word = fword.word;
-        p->next = ht[j];
-        ht[j] = p;
-        return 1;
+int HashTable::Insert(datatype f_word_key) {
+    int key = WordTransitionKey(f_word_key.word);
+    int i = H(key);
+    while (ht[i].key != 0)
+    {
+        i = (i + 1) % MaxSize;
     }
+    ht[i].key = key;
+    ht[i].word = f_word_key.word;
+    ht[i].frequency = f_word_key.frequency;
+    return i;
+}
+
+//获取单词以及频率
+datatype  HashTable::Get(int a) {
+    return ht[a];
 }
 
 
-//链地址法哈希查找菜单
-void LinkHashWordLocateMenu(string word,const char* file)
+//开放地址法哈希查找菜单
+void OpenHashLocateMenu(string word, const char* file)
 {
     int tem = 0;
     string a;
     string b;
-    HashTableLink HT;
+    HashTable HT;
     for (int i = 0; i < sum; i++)
         HT.Insert(WF[i]);
-    double load_factor = sum / MaxSize;
-
-
     for(int i=0;i<word.length();i++)
     {
         if(word[i]=='+')
@@ -179,29 +167,25 @@ void LinkHashWordLocateMenu(string word,const char* file)
             b = b + word[i];
         }
 
-        HT.Search(a);
-        Node* p = HT.Search(a);
-        HT.Search(b);
-        Node* q = HT.Search(b);
-
-        if (p != NULL && q!=NULL)
+        int i = HT.Search(a);
+        int j = HT.Search(b);
+        if (i != NULL && j!=NULL)
         {
-            cout << file << " " << p->data.frequency <<"+"<< q->data.frequency << endl;
+            cout << file << " " << HT.Get(i).frequency <<"+"<< HT.Get(j).frequency << endl;
         }
         Clear();
     }
 
     else
     {
-        HT.Search(word);
-        Node* p = HT.Search(word);
-
-        if (p != NULL)
+        int i = HT.Search(word);
+        if (i)
         {
-            cout << file << " " << p->data.frequency << endl;
+            cout << file << " " << HT.Get(i).frequency << endl;
         }
         Clear();
     }
+
 }
 
 #endif

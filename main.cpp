@@ -39,19 +39,19 @@
         if (!fin.is_open())
         {
             cout << "not exited" << endl;
-            system("pause");	//暂停
+            system("pause");
             return 0;
         }
         cout << "暂时为输入tuichu结束" << endl;
         while(word!="tuichu")
         {
-
             cin >> word;
             StatisticsData(file1);
-            LinkHashWordLocateMenu(word,file1);
+            OpenHashLocateMenu(word,file1);
             StatisticsData(file2);
-            LinkHashWordLocateMenu(word,file2);
+            OpenHashLocateMenu(word,file2);
         }
+
         return 0;
 
 
