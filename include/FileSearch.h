@@ -19,7 +19,7 @@
 
 #include "SearchEngine.h"
 
-enum class SearchEngineType { RBTree, HashMap, TrieTree, ACAutomaton };
+enum class SearchEngineType { RBTree, HashMap, TrieTree };
 
 /**
  * @brief File Search System
@@ -33,7 +33,7 @@ public:
      * @param file_name
      * @return SearchEngine
      */
-    // static SearchEngine SearchByRBTree(SearchEngineType type, std::string file_name);
+    static SearchEngine GetSearchEngine(SearchEngineType type, std::string file_name);
 
     /**
      * @brief
