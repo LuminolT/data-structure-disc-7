@@ -11,12 +11,26 @@
 
 #include "SearchEngineHashMap.h"
 
-SearchEngineHashMap::SearchEngineHashMap(std::string file_name) : SearchEngine(file_name) {
-    EngInStream ifs(file_name);
-    std::string str;
-    while (ifs >> str) {
-        ++_map[str];
+SearchEngineHashMap::SearchEngineHashMap(std::vector<std::string> file_names)
+    : SearchEngine(file_names) {
+    for (int i = 0; i < file_names.size(); ++i) {
+        EngInStream ifs(file_names[i]);
+        std::string str;
+        while (ifs >> str) {
+            auto &tmp = _map[str];
+            if (tmp.empty()) {
+                tmp.resize(file_names.size());
+            }
+            ++tmp[i];
+        }
     }
 }
 
-int SearchEngineHashMap::Search(std::string str) { return _map[str]; }
+std::vector<std::pair<std::string, int>> SearchEngineHashMap::SearchAll(std::string word) {
+    auto &nums = _map[word];
+    std::vector<std::pair<std::string, int>> ret;
+    for (int i = 0; i < nums.size(); ++i) {
+        ret.emplace_back(std::make_pair(_fileNames[i], nums[i]));
+    }
+    return ret;
+}

@@ -18,7 +18,7 @@
 class SearchEngineTrieTree : public SearchEngine {
 public:
     // Constructor
-    SearchEngineTrieTree(std::string file_name);
+    SearchEngineTrieTree(std::vector<std::string> file_name);
 
     // Copy Constructor
     SearchEngineTrieTree(const SearchEngine& other);
@@ -30,11 +30,12 @@ public:
     virtual ~SearchEngineTrieTree() = default;
 
     /**
-     * @brief Search Method
+     * @brief SearchAll
      *
-     * @return int
+     * @param word
+     * @return std::vector<std::pair<std::string, int>>
      */
-    virtual int Search(std::string) override;
+    virtual std::vector<std::pair<std::string, int>> SearchAll(std::string word) override;
 
 protected:
     TrieTree _tree;

@@ -11,16 +11,22 @@
 
 #include "SearchEngineTrieTree.h"
 
-SearchEngineTrieTree::SearchEngineTrieTree(std::string file_name) : SearchEngine(file_name) {
-    EngInStream ifs(file_name);
-    std::string str;
-    while (ifs >> str) {
-        //        ++_tree[str];
-        _tree.Insert(file_name[3] - '0', str);
+SearchEngineTrieTree::SearchEngineTrieTree(std::vector<std::string> file_names)
+    : SearchEngine(file_names) {
+    for (int i = 0; i < file_names.size(); ++i) {
+        EngInStream ifs(file_names[i]);
+        std::string str;
+        while (ifs >> str) {
+            _tree.Insert(i, str);
+        }
     }
 }
 
-int SearchEngineTrieTree::Search(std::string str) {
-    //    return _tree[str];
-    return _tree.Search(1, str);
+std::vector<std::pair<std::string, int>> SearchEngineTrieTree::SearchAll(std::string word) {
+    std::vector<std::pair<std::string, int>> ret;
+    for (int i = 0; i < _fileNames.size(); ++i) {
+        auto num = _tree.Search(i, word);
+        ret.emplace_back(std::make_pair(_fileNames[i], num));
+    }
+    return ret;
 }

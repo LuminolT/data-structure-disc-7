@@ -13,13 +13,14 @@
 #define INCLUDE_SEARCH_ENGINE_H
 
 #include <string>
+#include <vector>
 
 #include "EngStream.h"
 
 class SearchEngine {
 public:
     // Constructor
-    SearchEngine(std::string file_name) : _fileName(file_name) {}
+    SearchEngine(std::vector<std::string> file_names) : _fileNames(file_names) {}
 
     // Copy Constructor
     SearchEngine(const SearchEngine& other) = default;
@@ -31,16 +32,15 @@ public:
     virtual ~SearchEngine() = default;
 
     /**
-     * @brief Search Method
+     * @brief SearchAll
      *
-     * @return int
+     * @param word
+     * @return std::vector<std::pair<std::string, int>>
      */
-    virtual int Search(std::string) = 0;
-
-    virtual std::string Name() { return _fileName; }
+    virtual std::vector<std::pair<std::string, int>> SearchAll(std::string word) = 0;
 
 protected:
-    std::string _fileName;
+    std::vector<std::string> _fileNames;
 };
 
 #endif  // INCLUDE_SEARCH_ENGINE_H

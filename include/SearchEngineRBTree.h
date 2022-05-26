@@ -14,7 +14,6 @@
 
 #include <fstream>
 #include <map>
-#include <set>
 #include <string>
 
 #include "SearchEngine.h"
@@ -22,7 +21,7 @@
 class SearchEngineRBTree : public SearchEngine {
 public:
     // Constructor
-    SearchEngineRBTree(std::string file_name);
+    SearchEngineRBTree(std::vector<std::string> file_names);
 
     // Copy Constructor
     SearchEngineRBTree(const SearchEngine& other);
@@ -34,15 +33,15 @@ public:
     virtual ~SearchEngineRBTree() = default;
 
     /**
-     * @brief Search Method
+     * @brief SearchAll
      *
-     * @return int
+     * @param word
+     * @return std::vector<std::pair<std::string, int>>
      */
-    virtual int Search(std::string) override;
+    virtual std::vector<std::pair<std::string, int>> SearchAll(std::string word) override;
 
 protected:
-    // std::map<std::string, int> _map;
-    std::multiset<std::string> _set;
+    std::map<std::string, std::vector<int>> _map;
 };
 
 #endif  // INCLUDE_SEARCH_ENGINE_RBTREE_H

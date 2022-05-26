@@ -11,11 +11,13 @@
 
 #include <ostream>
 
+// #include "SearchEngineTrieTree.h"
+#include "SearchEngineRBTree.h"
 #include "SearchEngineTrieTree.h"
 #include "include/EngStream.h"
 #include "include/FileSearch.h"
 #include "include/SearchEngineHashMap.h"
-#include "include/SearchEngineRBTree.h"
+// #include "include/SearchEngineRBTree.h"
 
 int main() {
     // FileSearch::RunTest();
@@ -24,8 +26,10 @@ int main() {
     // while (ifs >> str) {
     //     std::cout << str << std::endl;
     // }
-    SearchEngineTrieTree se("1.txt");
-    std::cout << se.Name() << std::endl;
-    std::cout << se.Search("it") << std::endl;
+    SearchEngineRBTree se({"1.txt", "2.txt"});
+    auto ret = se.SearchAll("it");
+    for (auto &p : ret) {
+        std::cout << p.first << " " << p.second << std::endl;
+    }
     return 0;
 }

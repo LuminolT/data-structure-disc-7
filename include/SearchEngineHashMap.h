@@ -19,7 +19,7 @@
 class SearchEngineHashMap : public SearchEngine {
 public:
     // Constructor
-    SearchEngineHashMap(std::string file_name);
+    SearchEngineHashMap(std::vector<std::string> file_names);
 
     // Copy Constructor
     SearchEngineHashMap(const SearchEngine& other);
@@ -31,14 +31,15 @@ public:
     virtual ~SearchEngineHashMap() = default;
 
     /**
-     * @brief Search Method
+     * @brief
      *
-     * @return int
+     * @param word
+     * @return std::vector<std::pair<std::string, int>>
      */
-    virtual int Search(std::string) override;
+    virtual std::vector<std::pair<std::string, int>> SearchAll(std::string word) override;
 
 protected:
-    std::unordered_map<std::string, int> _map;
+    std::unordered_map<std::string, std::vector<int>> _map;
 };
 
 #endif  // INCLUDE_SEARCH_ENGINE_HASH_TAB_H
