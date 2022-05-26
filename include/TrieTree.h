@@ -27,7 +27,7 @@ public:
     ~TrieTree();
 
     /**
-     * @brief TODO: Insert Node:
+     * @brief Insert Node:
      *
      * @param num
      * @param word
@@ -35,7 +35,7 @@ public:
     void Insert(int num, const std::string& word);
 
     /**
-     * @brief TODO: Remove Node (if needed):
+     * @brief Remove Node (if needed):
      *
      * @param num
      * @param word
@@ -43,7 +43,7 @@ public:
     void Remove(int num, const std::string& word);
 
     /**
-     * @brief TODO: Search Node
+     * @brief Search Node
      *
      * @param num
      * @param word
@@ -52,7 +52,7 @@ public:
     std::vector<int> SearchAll(const std::string& word);
 
     /**
-     * @brief TODO: Search Node
+     * @brief Search Node
      *
      * @param num
      * @param word

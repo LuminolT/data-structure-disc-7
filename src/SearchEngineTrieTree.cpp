@@ -24,9 +24,9 @@ SearchEngineTrieTree::SearchEngineTrieTree(std::vector<std::string> file_names)
 
 std::vector<std::pair<std::string, int>> SearchEngineTrieTree::SearchAll(std::string word) {
     std::vector<std::pair<std::string, int>> ret;
+    auto nums = _tree.SearchAll(word);
     for (int i = 0; i < _fileNames.size(); ++i) {
-        auto num = _tree.Search(i, word);
-        ret.emplace_back(std::make_pair(_fileNames[i], num));
+        ret.emplace_back(std::make_pair(_fileNames[i], nums[i]));
     }
     return ret;
 }
