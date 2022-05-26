@@ -14,6 +14,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 class TrieTree {
 public:
@@ -23,14 +24,39 @@ public:
     // TODO
     ~TrieTree();
 
-    // TODO
-    void Insert(std::string);
+    /**
+     * @brief TODO: Insert Node:
+     *
+     * @param num
+     * @param word
+     */
+    void Insert(int num, const std::string& word);
 
-    // TODO (if needed)
-    void Remove(std::string);
+    /**
+     * @brief TODO: Remove Node (if needed):
+     *
+     * @param num
+     * @param word
+     */
+    void Remove(int num, const std::string& word);
 
-    // TODO
-    int& operator[](std::string);
+    /**
+     * @brief TODO: Search Node
+     *
+     * @param num
+     * @param word
+     * @return std::vector<int> (frequency)
+     */
+    std::vector<int> SearchAll(const std::string& word);
+
+    /**
+     * @brief TODO: Search Node
+     *
+     * @param num
+     * @param word
+     * @return int
+     */
+    int Search(int num, const std::string& word);
 
 protected:
     // if needed
