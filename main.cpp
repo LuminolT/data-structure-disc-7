@@ -13,8 +13,8 @@
 
 #include "include/EngStream.h"
 #include "include/FileSearch.h"
+#include "include/SearchEngineHashMap.h"
 #include "include/SearchEngineRBTree.h"
-
 
 int main() {
     // FileSearch::RunTest();
@@ -23,7 +23,7 @@ int main() {
     // while (ifs >> str) {
     //     std::cout << str << std::endl;
     // }
-    SearchEngineRBTree se("1.txt");
+    SearchEngineHashMap se("1.txt");
     std::cout << se.Name() << std::endl;
     std::cout << se.Search("it") << std::endl;
     return 0;
