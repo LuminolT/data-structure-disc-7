@@ -15,6 +15,7 @@
 #include "include/FileSearch.h"
 #include "include/SearchEngineHashMap.h"
 #include "include/SearchEngineRBTree.h"
+#include "SearchEngineTrieTree.h"
 
 int main() {
     // FileSearch::RunTest();
@@ -23,8 +24,8 @@ int main() {
     // while (ifs >> str) {
     //     std::cout << str << std::endl;
     // }
-    SearchEngineHashMap se("1.txt");
+    SearchEngineTrieTree se("../1.txt");
     std::cout << se.Name() << std::endl;
-    std::cout << se.Search("it") << std::endl;
+    std::cout << se.Search("my") << std::endl;
     return 0;
 }

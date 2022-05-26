@@ -13,6 +13,7 @@
 #define INCLUDE_SEARCH_ENGINE_TRIE_TREE_H
 
 #include "SearchEngine.h"
+#include "TrieTree.h"
 
 class SearchEngineTrieTree : public SearchEngine {
 public:
