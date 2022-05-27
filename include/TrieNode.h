@@ -18,7 +18,7 @@
  *
  */
 struct TrieNode {
-    TrieNode() { next.resize(26); }
+    TrieNode() : data(2, 0), next(26, 0) {}
 
     ~TrieNode() {
         for (auto &node : next) {

@@ -11,6 +11,9 @@
 
 #include "TrieTree.h"
 
+#include <exception>
+#include <stdexcept>
+
 TrieTree::TrieTree() { root = new TrieNode; }
 
 TrieTree::~TrieTree() { delete root; }
@@ -19,8 +22,13 @@ void TrieTree::Insert(int num, const std::string& word) {
     TrieNode* now = root;
     for (auto letter : word) {
         int go = letter - 'a';
+        // if (go < 0 || go >= 26) {
+        //     std::cout << int(letter);
+        //     system("pause");
+        //     return;
+        // }
         if (now->next[go] == nullptr)
-            now->next[go] = new TrieNode();
+            now->next[go] = new TrieNode;
         now = now->next[go];
     }
     while (now->data.size() <= num)

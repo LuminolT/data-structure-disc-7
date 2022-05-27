@@ -37,7 +37,7 @@ public:
      * @param word
      * @return std::vector<std::pair<std::string, int>>
      */
-    virtual std::vector<std::pair<std::string, int>> SearchAll(std::string word);
+    virtual std::vector<std::pair<std::string, int>> SearchAll(std::string word) = 0;
 
 protected:
     std::vector<std::string> _fileNames;

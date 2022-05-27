@@ -9,13 +9,23 @@
  *
  */
 
+#include <fstream>
 #include <functional>
-#include <ostream>
+#include <iostream>
 
+#include "EngStream.h"
 #include "FileSearch.h"
 
 int main() {
-    FileSearch f;
-    f.RunTest();
+    std::vector<std::string> file_names = {"1.txt", "2.txt"};
+    auto se = FileSearch::GetSearchEngine(SearchEngineType::TrieTree, file_names);
+
+    std::ifstream ifs("test.in");
+    std::ofstream ofs("test.out");
+    FileSearch::Run(se, ifs);
+
+    // Benchmark Test
+    // FileSearch::TestBenchMark();
+
     return 0;
 }
