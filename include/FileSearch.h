@@ -12,12 +12,16 @@
 #ifndef INCLUDE_FILE_SEARCH_H
 #define INCLUDE_FILE_SEARCH_H
 
+#include <chrono>
 #include <fstream>
+#include <iomanip>
 #include <iostream>
-#include <istream>
-#include <ostream>
+#include <memory>
 
 #include "SearchEngine.h"
+#include "SearchEngineHashMap.h"
+#include "SearchEngineRBTree.h"
+#include "SearchEngineTrieTree.h"
 
 enum class SearchEngineType { RBTree, HashMap, TrieTree };
 
@@ -28,20 +32,25 @@ enum class SearchEngineType { RBTree, HashMap, TrieTree };
 class FileSearch {
 public:
     /**
-     * @brief Search
+     * @brief Get the Search Engine object
      *
-     * @param file_name
-     * @return SearchEngine
+     * @param type
+     * @param file_names
+     * @return std::shared_ptr<SearchEngine>
      */
-    // static SearchEngine GetSearchEngine(SearchEngineType type, std::string file_name);
-
+    static std::shared_ptr<SearchEngine> GetSearchEngine(SearchEngineType type,
+                                                         std::vector<std::string> file_names);
     /**
      * @brief
      *
+     * @param se
      * @param is
      * @param os
      */
-    static void RunTest(std::istream& is = std::cin, std::ostream& os = std::cout);
+    static void Run(std::shared_ptr<SearchEngine> se, std::istream& is = std::cin,
+                    std::ostream& os = std::cout);
+
+    static void TestBenchMark(std::istream& is = std::cin, std::ostream& os = std::cout);
 };
 
 #endif  // INCLUDE_FILE_SEARCH_H

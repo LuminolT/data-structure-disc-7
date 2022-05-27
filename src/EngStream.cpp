@@ -11,17 +11,26 @@
 
 #include "EngStream.h"
 
+#include <stdio.h>
+
+#include <cctype>
+#include <iostream>
+
 EngInStream& EngInStream::operator>>(std::string& str) {
     if (_ifs.eof()) {
         _flag = false;
+        return *this;
     }
+    // get english string and to lower
     _ifs >> str;
-    if (!(str.back() > 'A' && str.back() < 'Z' || str.back() > 'a' && str.back() < 'z')) {
-        str.pop_back();
-    }
-    // to lower
+
     for (auto& c : str) {
-        c = std::tolower(c);
+        c = tolower(c);
     }
+
+    // delete special charactors
+    str.erase(std::remove_if(str.begin(), str.end(), [](char c) { return !isalpha(c); }),
+              str.end());
+
     return *this;
 }

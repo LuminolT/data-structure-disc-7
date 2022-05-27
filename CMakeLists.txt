@@ -8,7 +8,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
 
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
-MATH(EXPR stack_size "8*1024*1024")
+MATH(EXPR stack_size "10*1024*1024")
 set(CMAKE_EXE_LINKER_FLAGS "-Wl,--stack,${stack_size}")
 
 add_subdirectory(src)
